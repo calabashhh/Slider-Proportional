@@ -28,7 +28,11 @@
      <script type="text/javascript">
 
            
-           var map = L.map('map').setView(     );
+           var map = L.map('map', {
+              center: [41.8337329,-87.7319639],
+              zoom: 6
+          });
+
 
            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
               attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
