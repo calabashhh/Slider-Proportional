@@ -138,8 +138,8 @@
                   // To alter this, the pointToLayer function needs to be used
                   pointToLayer: function(feature, latlng) {
                       return L.circleMarker(latlng, { // we use circle marker for the points
-                          fillColor: "#501e65",  // fill color of the circles
-                          color: '#501e65',      // border color of the circles
+                          fillColor: "#52A3EA",  // fill color of the circles
+                          color: "#606BB4" ,      // border color of the circles
                           weight: 2,             // circle line weight in pixels
                           fillOpacity: 0.5       // fill opacity (0-1)
                       }).on({
@@ -179,7 +179,7 @@
                               // calculate the radius of the proportional symbols based on area
                               function calcPropRadius(attributeValue) {
                               
-                                var scaleFactor = 0.002;   // the scale factor is used to scale the values; the units of the radius are in meters
+                                var scaleFactor = 0.005;   // the scale factor is used to scale the values; the units of the radius are in meters
                                                            // you may determine the scale factor accordingly based on the range of the values and the mapping scale
                                 var area = attributeValue * scaleFactor;
                               
