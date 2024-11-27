@@ -66,7 +66,9 @@
                   // At each row, go through the columns/attributes to get the values
                   for (var attribute in properties) {
                       if ( attribute != 'id' &&
-                           attribute != 'name')   // != means NOT EQUAL TO
+                           attribute != 'name' &&
+                          attribute != 'geometry' &&
+                                              )   // != means NOT EQUAL TO
                                                   // These columns are NOT recorded
                                                   // Modify this part when mapping your own data
                       {
