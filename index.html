@@ -149,6 +149,7 @@
                                 this.setStyle({fillColor: '#501e65'});  // fill turns original color when mouseout
                             }
                     });
+                  }
 
                    updatePropSymbols(timestamps[0]); // this function is defined below
                                                                 // When loaded, the map will first show proportional symbols with the first timestamp's data
@@ -180,17 +181,12 @@
                                 return Math.sqrt(area/Math.PI);  // the function return the radius of the circle to be used in the updatePropSymbols()
                               }
                      
-                  }
-              }).addTo(map);
+                 
             
              
 
 
-            $.getJSON("https://raw.githubusercontent.com/calabashhh/Slider-Proportional/refs/heads/main/map.geojson")
-            .done(function(data) {
-                var info = processData(data);
-                createPropSymbols(info.timestamps, data);
-            });
+
 
 
 
