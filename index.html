@@ -66,9 +66,7 @@
                   // At each row, go through the columns/attributes to get the values
                   for (var attribute in properties) {
                       if ( attribute != 'id' &&
-                           attribute != 'name' &&
-                          attribute != 'geometry' &&
-                                              )   // != means NOT EQUAL TO
+                           attribute != 'name' )   // != means NOT EQUAL TO
                                                   // These columns are NOT recorded
                                                   // Modify this part when mapping your own data
                       {
@@ -153,7 +151,7 @@
             }
 
 
-            $.getJSON("https://raw.githubusercontent.com/neiugis/lab7_map/main/city.geojson")
+            $.getJSON("https://raw.githubusercontent.com/calabashhh/Slider-Proportional/refs/heads/main/map.geojson")
             .done(function(data) {
                 var info = processData(data);
                 createPropSymbols(info.timestamps, data);
