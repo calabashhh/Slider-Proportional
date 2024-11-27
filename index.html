@@ -45,7 +45,9 @@
             //change the file url to match yours
             $.getJSON("https://raw.githubusercontent.com/calabashhh/Slider-Proportional/refs/heads/main/map.geojson")  // The getJSON() method is used to get JSON data
             .done(function(data) {
-            
+                  var info = processData(data);
+                   createPropSymbols(info.timestamps, data);
+                   createSliderUI(info.timestamps);
             });
 
 
@@ -156,6 +158,55 @@
                 var info = processData(data);
                 createPropSymbols(info.timestamps, data);
             });
+
+
+
+        
+            function createSliderUI(timestamps) {
+              var sliderControl = L.control({ position: 'bottomleft'} ); // position of the slider
+                                // Another use of L.control :)
+              sliderControl.onAdd = function(map) {
+                //initialize a range slider with mousedown control
+                  var slider = L.DomUtil.create("input", "range-slider");
+                  L.DomEvent.addListener(slider, 'mousedown', function(e) {
+                      L.DomEvent.stopPropagation(e);
+                  });
+            
+                // Define the labels of the time slider as an array of strings
+                // Modify this for your data
+                var labels = ["1950", "1960","1970","1980", "1990", "2000","2010"];
+            
+                $(slider)
+                    .attr({
+                      'type':'range',
+                      'max': timestamps[timestamps.length-1],
+                      'min':timestamps[0],
+                      'step': 15, // Change this to match the numeric interval between adjacent timestamps
+                      'value': String(timestamps[0])
+                    })
+                    .on('input change', function() {
+                        updatePropSymbols($(this).val().toString()); // automatic update the map for the timestamp
+                        var i = $.inArray(this.value,timestamps);
+                        $(".temporal-legend").text(labels[i]); // automatic update the label for the timestamp
+                    });
+                return slider;
+              }
+              sliderControl.addTo(map);
+              createTimeLabel("1950"); //The starting timestamp label
+              }
+            
+            
+              // Add labels to the time slider when the map first loaded
+              function createTimeLabel(startTimestamp) {
+                var temporalLegend = L.control({position: 'bottomleft' }); // same position as the slider
+                                   // One more use of L.control !!
+                temporalLegend.onAdd = function(map) {
+                  var output = L.DomUtil.create("output", "temporal-legend");
+                  $(output).text(startTimestamp);
+                  return output;
+                }
+                temporalLegend.addTo(map);
+              }
         
 
      </script>
